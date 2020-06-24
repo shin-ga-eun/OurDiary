@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.domain.diary.dao.DiaryDao;
 import com.example.demo.domain.member.dao.MemberDao;
 import com.example.demo.domain.member.service.LoginService;
 import com.example.demo.domain.member.service.SignUpService;
@@ -38,5 +39,9 @@ public class JavaConfig {
         return new SignUpService();
     }
 
+    @Bean
+    public DiaryDao diaryDao(){
+        return new DiaryDao(dataSource());
+    }
 
 }

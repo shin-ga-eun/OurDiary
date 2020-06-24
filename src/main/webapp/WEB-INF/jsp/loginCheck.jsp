@@ -12,8 +12,10 @@
         }
 
         if(LOGIN_OK.equals("success")) {
-            out.println("<script>location.href='list'</script>");
-
+            String sessionID = session.getId();
+            String email = (String) request.getParameter("email");
+            session.setAttribute("sessionEmail",email);
+            out.println("<script>location.href='mainhome'</script>");
         }
         else if(LOGIN_OK.equals("wrongPassword")){
             out.println("<script>alert('비밀번호가 잘못되었습니다! 다시로그인해주세요..'); </script>");
