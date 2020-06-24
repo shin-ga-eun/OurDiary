@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import com.example.demo.domain.member.dao.MemberDao;
 import com.example.demo.domain.member.service.LoginService;
+import com.example.demo.domain.member.service.SignUpService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +31,11 @@ public class JavaConfig {
     @Bean
     public LoginService loginService(){
         return new LoginService();
+    }
+
+    @Bean
+    public SignUpService signUpService(){
+        return new SignUpService();
     }
 
 

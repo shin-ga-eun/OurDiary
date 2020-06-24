@@ -1,5 +1,6 @@
 package com.example.demo.domain.member.dao;
 
+import com.example.demo.domain.member.dto.SignUpDto;
 import com.example.demo.domain.member.entity.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -49,6 +50,14 @@ public class MemberDao {
                     }
                 }, email);
         return results.isEmpty() ? null : results.get(0);
+    }
+
+    // member insert
+    public void insert (SignUpDto signUpDto){
+        String email = signUpDto.getEmail();
+
+        jdbcTemplate.update("insert member (email,password,name,phone,profile) values (?,?,?,?,?)",
+                signUpDto.getEmail(), signUpDto.getPassword(), signUpDto.getName(), signUpDto.getPhone(), signUpDto.getProfile());
     }
 
 }

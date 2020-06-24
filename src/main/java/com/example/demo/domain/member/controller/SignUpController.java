@@ -1,21 +1,39 @@
 package com.example.demo.domain.member.controller;
 
-import com.example.demo.domain.member.dao.MemberDao;
+import com.example.demo.domain.member.dto.SignUpDto;
+import com.example.demo.domain.member.service.SignUpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class SignUpController {
     @Autowired
-    private MemberDao memberDao;
+    private SignUpService signUpService;
 
-    @RequestMapping("/signUp")
-    public String signUp(Model model) {
-
-
+    @GetMapping("/signUp")
+    public String signUpForm() {
         return "signUp";
+    }
+
+    @PostMapping("/signUpCheck")
+    public String signUp(Model model, SignUpDto signUpDto) {
+        Boolean IsAlreadyMember = signUpService.IsAlreadyMember(signUpDto);
+
+        if(signUpDto.getEmail().equals("") || signUpDto.getPassword().equals("") || signUpDto.getName().equals("")){
+            model.addAttribute("SIGNUP_OK", "null");
+        }
+        else if (IsAlreadyMember) {
+            model.addAttribute("SIGNUP_OK", "IsAlreadyMember");
+        }
+        else {
+            signUpService.insert(signUpDto);
+            model.addAttribute("SIGNUP_OK", "success");
+        }
+
+        return "signUpCheck";
     }
 
 }
