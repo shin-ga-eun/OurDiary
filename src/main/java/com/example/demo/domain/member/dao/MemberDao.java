@@ -16,7 +16,6 @@ public class MemberDao {
     }
 
     public List<Member> selectAll() {
-        System.out.println("MemberDao is running");
         List<Member> results = jdbcTemplate.query("select * from member",
                 new RowMapper<Member>() {
                     @Override
@@ -33,4 +32,23 @@ public class MemberDao {
                 });
         return results.isEmpty() ? null : results;
     }
+
+    //select member by email
+    public Member selectByEmail(String email) {
+        List<Member> results = jdbcTemplate.query("select * from member where email=?",
+                new RowMapper<Member>() {
+                    @Override
+                    public Member mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Member member = new Member(rs.getString("email"),
+                                rs.getString("password"),
+                                rs.getString("name"),
+                                rs.getString("phone"),
+                                rs.getString("profile"));
+                        member.setId(rs.getLong("id"));
+                        return member;
+                    }
+                }, email);
+        return results.isEmpty() ? null : results.get(0);
+    }
+
 }

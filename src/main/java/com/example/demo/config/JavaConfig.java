@@ -1,6 +1,7 @@
-package com.example.demo;
+package com.example.demo.config;
 
 import com.example.demo.domain.member.dao.MemberDao;
+import com.example.demo.domain.member.service.LoginService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,5 +26,11 @@ public class JavaConfig {
     public MemberDao memberDao(){
         return new MemberDao(dataSource());
     }
+
+    @Bean
+    public LoginService loginService(){
+        return new LoginService();
+    }
+
 
 }
