@@ -9,6 +9,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script type="text/javaScript" language="javascript">
+        function goPage (id) {
+            location.href="/diary/detail/info?id="+id;
+        }
+        function deletePage (id) {
+            location.href="/diary/detail/delete?id="+id;
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -22,6 +30,7 @@
     <div style="padding-top: 150px">
 
         <%
+            String diaryId = (String) request.getAttribute("diaryId");
             GetDiaryDto diary = (GetDiaryDto) request.getAttribute("diary");
         %>
 
@@ -39,8 +48,8 @@
 
             <div class="form-group row">
                 <div class="col-sm-10">
-                    <button type="button" class="btn btn-primary" onclick="location.href='mainhome'">수정하기</button>
-                    <button type="button" class="btn btn-danger" onclick="location.href='mainhome'">삭제하기</button>
+                    <button type="button" class="btn btn-primary" onclick="goPage(<%=diaryId%>)">수정하기</button>
+                    <button type="button" class="btn btn-danger" onclick="deletePage(<%=diaryId%>)">삭제하기</button>
 
                 </div>
             </div>

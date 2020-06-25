@@ -1,8 +1,6 @@
-<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@ page import="com.example.demo.domain.diary.dto.GetDiaryDto" %>
 <%@ page import="java.util.List" %>
-<%@ page import="org.springframework.data.relational.core.sql.In" %>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -38,11 +36,9 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <script type="text/javaScript" language="javascript">
-
         function goPage (id) {
             location.href="diary/detail?id="+id;
         }
-
     </script>
     <style>
 
@@ -116,16 +112,9 @@
             </table>
 
             <br>
-
-<%--            <%--%>
-<%--                String section = year+"-"+(month+1)+"-"+1;--%>
-<%--                System.out.println("here is in calendar>> "+section);--%>
-<%--                session.setAttribute("sessionSection", section);--%>
-<%--            %>--%>
             <%
                 List<GetDiaryDto> diaryList = (List<GetDiaryDto>) request.getAttribute("diaryList");
             %>
-
 
         <%--            calendar--%>
             <table class="container" border="1px" cellspacing="10" cellpadding="1" bgcolor="white" style="border: 1px solid white; table-layout: fixed">
@@ -174,11 +163,14 @@
 
                                 String title = "";
                                 Long id = Long.parseLong("0");
-                                for(int list_index = 0; list_index<diaryList.size(); list_index++){
-                                    if(diaryList.get(list_index).getDate().equals(sUseDate)){
-                                        title = diaryList.get(list_index).getTitle();
-                                        id = diaryList.get(list_index).getId();
-                                        break;
+
+                                if(diaryList != null) {
+                                    for (int list_index = 0; list_index < diaryList.size(); list_index++) {
+                                        if (diaryList.get(list_index).getDate().equals(sUseDate)) {
+                                            title = diaryList.get(list_index).getTitle();
+                                            id = diaryList.get(list_index).getId();
+                                            break;
+                                        }
                                     }
                                 }
 
@@ -235,4 +227,3 @@
 </body>
 
 </HTML>
-[출처] [JSP] JSP 달력(Calendar) 만들기 예제 |작성자 자바킹

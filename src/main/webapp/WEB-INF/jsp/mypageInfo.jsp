@@ -10,27 +10,46 @@
 <%
     GetMemberDto memberInfo = (GetMemberDto) request.getAttribute("sessionMemberInfo");
 %>
+<div class="container">
 
+    <div class=".container-md" >
+        <p class="font-weight-normal" style="font-size: xx-large">마이 페이지</p>
 
-<div class="container align-items-lg-center">
-    <p class="font-weight-normal" style="font-size: xx-large">마이 페이지</p>
-    <p class="lead">Email <%=memberInfo.getEmail()%></p>
+        <form action="/mypage" method="post">
+            <div class="form-group row">
+                <label for="email" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="email" name="email" value="<%=memberInfo.getEmail()%>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="name" name="name" value="<%=memberInfo.getName()%>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phone" class="col-sm-2 col-form-label">Phone</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control" id="phone" name="phone" value="<%=memberInfo.getPhone()%>">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="profile" class="col-sm-2 col-form-label">Profile</label>
+                <div class="col-sm-10">
+                    <textarea readonly aria-multiline="true" rows="3" class="form-control" id="profile" name="profile"><%=memberInfo.getProfile()%></textarea>
+                </div>
+            </div>
 
-    <p class="lead">UserName <%=memberInfo.getName()%></p>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="button" class="btn btn-primary" onclick="location.href='mypage'">회원정보수정하기</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='leave'">탈퇴하기</button>
+                </div>
+            </div>
+        </form>
 
-    <p class="lead">Phone <%=memberInfo.getPhone()%></p>
-
-    <p class="lead">Profile <%=memberInfo.getProfile()%></p>
-
-    <div class="form-group row">
-        <div class="col-sm-10">
-            <button type="button" class="btn btn-primary" onclick="location.href='mypage'">회원정보수정하기</button>
-            <button type="button" class="btn btn-danger" onclick="location.href='leave'">탈퇴하기</button>
-
-
-        </div>
     </div>
-</div>
 
 
 

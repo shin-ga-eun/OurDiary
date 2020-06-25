@@ -2,6 +2,7 @@ package com.example.demo.domain.diary.dao;
 
 import com.example.demo.domain.diary.dto.GetDiaryDto;
 import com.example.demo.domain.diary.dto.SearchDiaryDto;
+import com.example.demo.domain.diary.dto.UpdateDiaryDto;
 import com.example.demo.domain.diary.dto.WriteDiaryDto;
 import com.example.demo.domain.diary.entity.Diary;
 import org.springframework.data.relational.core.sql.In;
@@ -134,6 +135,20 @@ public class DiaryDao {
 
         return false;
 
+    }
+
+    //update diary by id
+    public void update (Long id, UpdateDiaryDto updateDiaryDto) {
+        LocalDate modify_at = LocalDate.now();
+
+        jdbcTemplate.update("update diary set title=?, content=?, weather=?, modify_at=? where id=?",
+                updateDiaryDto.getTitle(), updateDiaryDto.getContent(), updateDiaryDto.getWeather(), modify_at, id);
+    }
+
+    //delete diary
+    public void delete (Long id) {
+
+        jdbcTemplate.update("delete from diary where id=?", id);
     }
 
     //String to LocalDate

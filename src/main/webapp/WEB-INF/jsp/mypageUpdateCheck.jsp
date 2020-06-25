@@ -11,6 +11,10 @@
         out.println("<script>location.href='memberInfo'</script>");
     }
     else if(UPDATE_OK.equals("success")){
+
+        //session update
+        session.setAttribute("sessionUserName", (String) request.getAttribute("UPDATE_USERNAME"));
+
         out.println("<script>alert('회원정보 수정에 성공하였습니다..'); </script>");
         out.println("<script>location.href='memberInfo'</script>");
 

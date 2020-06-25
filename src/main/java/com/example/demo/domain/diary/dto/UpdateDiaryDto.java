@@ -5,13 +5,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class GetDiaryDto {
-    private Long id;
+public class UpdateDiaryDto {
+    private int id;
+    private String writer;
     private String date;
     private String title;
     private String content;
     private String weather;
-    private String create_at;
     private String modify_at;
-
 }

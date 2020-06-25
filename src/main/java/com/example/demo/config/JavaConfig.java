@@ -2,7 +2,9 @@ package com.example.demo.config;
 
 import com.example.demo.domain.diary.dao.DiaryDao;
 import com.example.demo.domain.diary.dto.GetDiaryDto;
+import com.example.demo.domain.diary.service.DeleteDiaryService;
 import com.example.demo.domain.diary.service.GetDiaryService;
+import com.example.demo.domain.diary.service.UpdateDiaryService;
 import com.example.demo.domain.diary.service.WriteDiaryService;
 import com.example.demo.domain.member.dao.MemberDao;
 import com.example.demo.domain.member.service.*;
@@ -61,5 +63,10 @@ public class JavaConfig {
     @Bean
     public GetDiaryService getDiaryService() { return new GetDiaryService(); }
 
+    @Bean
+    public UpdateDiaryService updateDiaryService() { return new UpdateDiaryService(); }
+
+    @Bean
+    public DeleteDiaryService deleteDiaryService() { return new DeleteDiaryService(); }
 
 }

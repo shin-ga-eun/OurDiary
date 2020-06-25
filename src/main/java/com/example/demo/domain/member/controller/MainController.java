@@ -62,6 +62,7 @@ public class MainController {
         } else {
             updateMemberService.update(updateMemberDto);
             model.addAttribute("UPDATE_OK", "success");
+            model.addAttribute("UPDATE_USERNAME", updateMemberDto.getName());
         }
 
         return "mypageUpdateCheck";
