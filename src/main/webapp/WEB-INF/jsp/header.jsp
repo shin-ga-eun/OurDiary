@@ -21,13 +21,13 @@
             <div class="flex-md-row-reverse" id="navbarSupportedContent">
                 <ul class="navbar-nav " style="align-items: end">
                     <li class="nav-item">
-                        <a class="nav-link" href="/mainhome">메인홈 </a>
+                        <a class="nav-link" href="/mainhome" style="font-size: medium">메인홈 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/memberInfo">마이페이지 </a>
+                        <a class="nav-link" href="/memberInfo" style="font-size: medium">마이페이지 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/logout" >로그아웃</a>
+                        <a class="nav-link" href="/logout" style="font-size: medium">로그아웃</a>
                     </li>
                 </ul>
             </div>
