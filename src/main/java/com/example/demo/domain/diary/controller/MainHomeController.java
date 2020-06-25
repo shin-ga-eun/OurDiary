@@ -16,8 +16,12 @@ public class MainHomeController {
 
     @GetMapping("/mainhome")
     public String mainhome(Model model) {
-//        List<Member> memberList = memberDao.selectAll();
         return "mainhome";
+    }
+
+    @GetMapping("/mypage")
+    public String mypage(Model model){
+        return "mypage";
     }
 
     @GetMapping("/logout")

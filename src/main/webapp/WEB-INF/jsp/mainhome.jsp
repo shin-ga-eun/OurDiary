@@ -13,13 +13,16 @@
 </head>
 <body>
     <div class="container">
+
 <%--        mainhome header--%>
         <div class="fixed-top">
             <jsp:include page="header.jsp" flush="false"/>
         </div>
+
 <%--        mainhome body--%>
-
-
+        <div style="padding-top: 80px">
+            <jsp:include page="body.jsp" flush="false"/>
+        </div>
 
 <%--        mainhome footer--%>
         <div class="fixed-bottom">

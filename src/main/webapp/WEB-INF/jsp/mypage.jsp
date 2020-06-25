@@ -1,22 +1,33 @@
 <%--
   Created by IntelliJ IDEA.
   User: sge
-  Date: 2020/06/24
-  Time: 9:11 오후
+  Date: 2020/06/25
+  Time: 11:02 오전
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>my page</title>
 </head>
 <body>
-    <nav class="text-center navbar navbar-light bg-light" style="color: darkgrey; height:100px;">
-        <div class="container-xl">
-            <p class="lead">Welcome to our diary Service!  소중한 하루하루를 일기로 기록하는 서비스입니다.</p>
-            <p class="lead">@CopyRight. 2020 Shin-ga-eun</p>
-        </div>
-    </nav>
+    <%--        mainhome header--%>
+    <div class="fixed-top">
+        <jsp:include page="header.jsp" flush="false"/>
+    </div>
+
+    <%--    my page body--%>
+    <div class="container-xl" style="padding-top: 80px">
+
+
+
+    </div>
+
+    <%--        mainhome footer--%>
+    <div class="fixed-bottom">
+        <jsp:include page="footer.jsp" flush="false"/>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
