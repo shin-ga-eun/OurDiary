@@ -1,6 +1,8 @@
 package com.example.demo.config;
 
 import com.example.demo.domain.diary.dao.DiaryDao;
+import com.example.demo.domain.diary.dto.GetDiaryDto;
+import com.example.demo.domain.diary.service.GetDiaryService;
 import com.example.demo.domain.diary.service.WriteDiaryService;
 import com.example.demo.domain.member.dao.MemberDao;
 import com.example.demo.domain.member.service.*;
@@ -55,5 +57,9 @@ public class JavaConfig {
 
     @Bean
     public WriteDiaryService writeDiaryService() { return new WriteDiaryService(); }
+
+    @Bean
+    public GetDiaryService getDiaryService() { return new GetDiaryService(); }
+
 
 }

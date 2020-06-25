@@ -1,5 +1,8 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
+<%@ page import="com.example.demo.domain.diary.dto.GetDiaryDto" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.springframework.data.relational.core.sql.In" %>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -22,25 +25,29 @@
 
     int startDay = currentCal.getMinimum(java.util.Calendar.DATE);
     int endDay = currentCal.getActualMaximum(java.util.Calendar.DAY_OF_MONTH);
-    int start = currentCal.get(java.util.Calendar.DAY_OF_WEEK);
-    int newLine = 0;
+    int start_dayOfWeek = currentCal.get(java.util.Calendar.DAY_OF_WEEK); //1일의 요일
+    int weekNum = 0; //주차
 
     //오늘 날짜 저장.
     Calendar todayCal = Calendar.getInstance();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
-    int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
+//    SimpleDateFormat sdf = new SimpleDateFormat("yyyMMdd");
+//    int intToday = Integer.parseInt(sdf.format(todayCal.getTime()));
 %>
 
 <html lang="ko">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <script type="text/javaScript" language="javascript">
+
+        function goPage (id) {
+            location.href="diary/detail?id="+id;
+        }
+
     </script>
     <style>
-        #calendarTable {
-            border: 1px solid white;
-        }
+
     </style>
+
 
 </head>
 
@@ -50,7 +57,7 @@
 
         <%--            calendar navigation--%>
         <div id="container">
-            <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C; table-layout: fixed">
                 <tr>
                     <td height="60">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -90,9 +97,7 @@
                                     <%if(month < 11 ){ %>
 
                                     <a href="<c:url value='/mainhome' />?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
-
                                         <!-- 다음달 --><b>&gt;</b>
-
                                     </a>
 
                                     <%}else{%>
@@ -112,11 +117,21 @@
 
             <br>
 
-<%--            calendar--%>
-            <table id="calendarTable" class="container" border="1px" cellspacing="10" cellpadding="1" bgcolor="white">
+<%--            <%--%>
+<%--                String section = year+"-"+(month+1)+"-"+1;--%>
+<%--                System.out.println("here is in calendar>> "+section);--%>
+<%--                session.setAttribute("sessionSection", section);--%>
+<%--            %>--%>
+            <%
+                List<GetDiaryDto> diaryList = (List<GetDiaryDto>) request.getAttribute("diaryList");
+            %>
+
+
+        <%--            calendar--%>
+            <table class="container" border="1px" cellspacing="10" cellpadding="1" bgcolor="white" style="border: 1px solid white; table-layout: fixed">
 
                 <thead>
-                    <tr bgcolor="#CED8F6" class="font-weight-border" style="font-size: 20px;">
+                    <tr  bgcolor="#CED8F6" class="font-weight-border" style="font-size: 20px;">
                         <td><div align="center"><font color="red">일</font></div></td>
 
                         <%
@@ -135,61 +150,77 @@
                     <tr>
                         <%
                             //front blank loop
-                            for(int index = 1; index < start ; index++ ) {
-                                out.println("<td >&nbsp;</td>");
-                                newLine++;
+                            for(int index = 1; index < start_dayOfWeek ; index++ ) {
+                                out.println("<td/>");
+                                weekNum++;
                             }
 
-                            for(int index = 1; index <= endDay; index++) {
+                            //day index start
+                            for(int day = 1; day <= endDay; day++) {
+
+                                //요일 color
                                 String color = "";
-                                if(newLine == 0){
+                                if(weekNum == 0){ //일요일
                                     color = "RED";
-                                }else if(newLine == 6){
+                                }else if(weekNum == 6){ //토요일
                                     color = "#00008b";
                                 }else{
                                     color = "BLACK";
-                                };
-
-                                String sUseDate = Integer.toString(year);
-                                sUseDate += Integer.toString(month+1).length() == 1 ? "0" + Integer.toString(month+1) : Integer.toString(month+1);
-                                sUseDate += Integer.toString(index).length() == 1 ? "0" + Integer.toString(index) : Integer.toString(index);
-
-                                int iUseDate = Integer.parseInt(sUseDate);
-                                String backColor = "#EFEFEF";
-
-                                if(iUseDate == intToday ) {
-                                    backColor = "#c9c9c9";
                                 }
 
-                                out.println("<td valign='top' align='left' height='92px' bgcolor='"+backColor+"' nowrap>");
-                        %>
+                                String sUseDate = Integer.toString(year)+"-";
+                                sUseDate += (Integer.toString(month+1).length() == 1 ? "0" + (month+1) : Integer.toString(month+1))+"-";
+                                sUseDate += (Integer.toString(day).length() == 1 ? "0" + day : Integer.toString(day));
 
-                        <font color='<%=color%>'>
-                            <%=index %>
-                        </font>
+                                String title = "";
+                                Long id = Long.parseLong("0");
+                                for(int list_index = 0; list_index<diaryList.size(); list_index++){
+                                    if(diaryList.get(list_index).getDate().equals(sUseDate)){
+                                        title = diaryList.get(list_index).getTitle();
+                                        id = diaryList.get(list_index).getId();
+                                        break;
+                                    }
+                                }
 
-                        <%
-                                out.println("<br>");
-                                out.println(iUseDate);
-                                out.println("<br>");
+                                String bgcolor="";
+                                if(title.equals("")){
+                                    bgcolor="#EFEFEF";
+                                }
+                                else {
+                                    bgcolor="E0ECF8";
+                                }
 
-                                //기능 제거
-                                out.println("</td>");
-                                newLine++;
+                            %>
+                                <td valign='top' align='left' height='92px' bgcolor='<%=bgcolor%>' nowrap>
+                                    <div>
+                                    <font color='<%=color%>'><%=day%></font>
+                                    <br>
+                                    <%
+                                        if(!title.equals("")){
+                                            %>
+                                            <input class='btn btn-secondary' size="12" value="<%=title%>" onclick="goPage(<%=id%>)"/>
+                                            <%
+                                        }
+                                        %>
+                                    </div>
+                                </td>
+                            <%
+                                weekNum++;
 
-                                if(newLine == 7){
+                                if(weekNum == 7){
                                     out.println("</tr>");
-                                    if(index <= endDay) {
+                                    if(day <= endDay) {
                                         out.println("<tr>");
                                     }
-                                    newLine=0;
+                                    weekNum=0;
                                 }
                             }
+                            //day index end
 
                             //last blank loop
-                            while(newLine > 0 && newLine < 7) {
-                                out.println("<TD>&nbsp;</TD>");
-                                newLine++;
+                            while(weekNum > 0 && weekNum < 7) {
+                                out.println("<td/>");
+                                weekNum++;
                             }
                         %>
                     </tr>

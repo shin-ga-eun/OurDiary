@@ -1,3 +1,4 @@
+<%@ page import="java.time.LocalDate" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 
 <html>
@@ -20,10 +21,18 @@
             session.setAttribute("sessionPassword", password);
             session.setAttribute("sessionUserName", name);
 
+            //for mainhome default list
+            LocalDate today = LocalDate.now();
+            String section = today.getYear()+"-"+today.getMonthValue()+"-"+1;
+            session.setAttribute("sessionSection", section);
+
+            //move page
             out.println("<script>location.href='mainhome'</script>");
         }
         else if(LOGIN_OK.equals("wrongPassword")){
             out.println("<script>alert('비밀번호가 잘못되었습니다! 다시로그인해주세요..'); </script>");
+
+            //move page
             out.println("<script>history.back();</script>");
         }
 

@@ -9,10 +9,12 @@ import java.util.Date;
 @Getter
 @Setter
 public class GetDiaryDto {
-    private LocalDate date;
+    private Long id;
+    private String date;
     private String title;
     private String content;
     private String weather;
-    private Date create_at;
-    private Date modify_at;
+    private String create_at;
+    private String modify_at;
+
 }
