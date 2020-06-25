@@ -8,11 +8,11 @@
 
     if(UPDATE_OK.equals("WrongPassword")) {
         out.println("<script>alert('비밀번호가 올바르지 않습니다.. 이전 화면으로 이동합니다..'); </script>");
-        out.println("<script>location.href='mypage'</script>");
+        out.println("<script>location.href='memberInfo'</script>");
     }
     else if(UPDATE_OK.equals("success")){
         out.println("<script>alert('회원정보 수정에 성공하였습니다..'); </script>");
-        out.println("<script>location.href='mypage'</script>");
+        out.println("<script>location.href='memberInfo'</script>");
 
     }
 

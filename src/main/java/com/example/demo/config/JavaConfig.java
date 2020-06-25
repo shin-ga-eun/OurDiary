@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import com.example.demo.domain.diary.dao.DiaryDao;
+import com.example.demo.domain.diary.service.WriteDiaryService;
 import com.example.demo.domain.member.dao.MemberDao;
 import com.example.demo.domain.member.service.*;
 import org.apache.tomcat.jdbc.pool.DataSource;
@@ -51,5 +52,8 @@ public class JavaConfig {
     public DiaryDao diaryDao(){
         return new DiaryDao(dataSource());
     }
+
+    @Bean
+    public WriteDiaryService writeDiaryService() { return new WriteDiaryService(); }
 
 }

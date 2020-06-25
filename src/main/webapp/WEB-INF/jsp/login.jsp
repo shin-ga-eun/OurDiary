@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <form action="/loginCheck" method="post">
+        <form action="/login" method="post">
             <div class="form-group">
                 <label for="email">이메일을 입력해주세요. </label>
                 <input type="text" class="form-control" id="email" name="email">

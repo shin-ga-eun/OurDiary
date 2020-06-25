@@ -24,7 +24,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="button" class="btn btn-primary" onclick="location.href='mypageUpdate'">회원정보수정하기</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='mypage'">회원정보수정하기</button>
             <button type="button" class="btn btn-danger" onclick="location.href='leave'">탈퇴하기</button>
 
 

@@ -37,7 +37,7 @@ public class MainController {
 //    }
 
     //mypage 조회
-    @GetMapping("/mypage")
+    @GetMapping("/memberInfo")
     public String info(@SessionAttribute("sessionEmail") String email, Model model) {
         GetMemberDto memberInfo = getMemberService.info(email);
         model.addAttribute("sessionMemberInfo", memberInfo);
@@ -46,14 +46,14 @@ public class MainController {
     }
 
     //mypage 수정
-    @GetMapping("/mypageUpdate")
+    @GetMapping("/mypage")
     public String info_update_page(@SessionAttribute("sessionEmail") String email, Model model) {
         GetMemberDto memberInfo = getMemberService.info(email);
         model.addAttribute("sessionMemberInfo", memberInfo);
         return "mypageUpdate";
     }
 
-    @PostMapping("/mypageUpdateCheck")
+    @PostMapping("/mypage")
     public String info_update_check(@SessionAttribute("sessionEmail") String email, Model model, UpdateMemberDto updateMemberDto) {
         Boolean CorrectPassword = updateMemberService.CorrectPassword(email, updateMemberDto);
 

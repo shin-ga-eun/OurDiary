@@ -19,7 +19,7 @@
     <div class=".container-md" >
         <p class="font-weight-normal" style="font-size: xx-large">마이 페이지</p>
 
-        <form action="/mypageUpdateCheck" method="post">
+        <form action="/mypage" method="post">
             <div class="form-group row">
                 <label for="email" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">

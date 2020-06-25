@@ -24,7 +24,7 @@
                         <a class="nav-link" href="/mainhome">메인홈 </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/mypage">마이페이지 </a>
+                        <a class="nav-link" href="/memberInfo">마이페이지 </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/logout" >로그아웃</a>

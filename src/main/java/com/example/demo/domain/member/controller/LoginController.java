@@ -22,7 +22,7 @@ public class LoginController {
         return "login";
     }
 
-    @PostMapping("/loginCheck")
+    @PostMapping("/login")
     public String loginCheck(Model model, LoginDto loginDto) {
         Member member = loginService.login(loginDto);
 

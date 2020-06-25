@@ -15,14 +15,18 @@
 </head>
 <body>
 
-<%--keyword search form--%>
-<form class="mr-auto form-inline my-lg-0 mx-5">
-    <input class="form-control mr-sm-2" type="search" placeholder="키워드를 입력해주세요..">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-</form>
+
+<%--keyword search form and add a diary btn--%>
+<div class="flex-row">
+    <button type="button" class="btn btn-lg btn-block btn-outline-dark" onclick="location.href='diary'">일기 쓰기</button>
 
 
+    <form class="form-inline my-lg-3 flex-md-row-reverse">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+        <input class="form-control mr-sm-2" type="search" placeholder="키워드를 입력해주세요..">
+    </form>
 
+</div>
 
 <%--calendar--%>
 <div class="table-responsive-lg" style="width: 992px;">

@@ -1,8 +1,18 @@
 package com.example.demo.domain.diary.dao;
 
+import com.example.demo.domain.diary.dto.GetDiaryDto;
+import com.example.demo.domain.diary.dto.WriteDiaryDto;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class DiaryDao {
     private JdbcTemplate jdbcTemplate;
@@ -10,6 +20,57 @@ public class DiaryDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    // select a diary by writer and date
+    public GetDiaryDto selectByWriterAndDate (String writer, LocalDate date){
+        GetDiaryDto getDiaryDto = new GetDiaryDto();
+
+        List<GetDiaryDto> results = jdbcTemplate.query("select * from diary where writer=? and date=? order by date asc",
+                new RowMapper<GetDiaryDto>() {
+                    @Override
+                    public GetDiaryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+                        getDiaryDto.setDate(rs.getDate("date").toLocalDate());
+                        getDiaryDto.setTitle(rs.getString("title"));
+                        getDiaryDto.setWeather(rs.getString("weather"));
+                        getDiaryDto.setContent(rs.getString("content"));
+                        getDiaryDto.setCreate_at(rs.getDate("create_at"));
+                        getDiaryDto.setModify_at(rs.getDate("modify_at"));
+
+                        return getDiaryDto;
+                    }
+                }, writer, date);
+
+        if(results.isEmpty()){
+            return null;
+        }
+
+        return results.get(0);
+    }
+
+    // insert diary
+    public Boolean insert (WriteDiaryDto writeDiaryDto){
+        Date now = new Date();
+
+        if(selectByWriterAndDate(writeDiaryDto.getWriter(), stringToLocalDate(writeDiaryDto.getDate())) == null){
+            jdbcTemplate.update("insert diary (writer,date,title,content,weather, create_at, modify_at) values (?,?,?,?,?,?,?)",
+                    writeDiaryDto.getWriter(), writeDiaryDto.getDate(), writeDiaryDto.getTitle(), writeDiaryDto.getContent(), writeDiaryDto.getWeather(), now, now);
+            return true;
+        }
+
+        return false;
+
+    }
+
+    //String to LocalDate
+    public LocalDate stringToLocalDate (String str){
+        StringTokenizer st = new StringTokenizer(str, "-");
+        int year = Integer.parseInt(st.nextToken());
+        int month = Integer.parseInt(st.nextToken());
+        int day = Integer.parseInt(st.nextToken());
+        LocalDate regDate = LocalDate.of(year,month,day);
+
+        return regDate;
+    }
 
 
 }
