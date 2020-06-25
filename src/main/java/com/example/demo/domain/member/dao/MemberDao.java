@@ -1,6 +1,7 @@
 package com.example.demo.domain.member.dao;
 
 import com.example.demo.domain.member.dto.SignUpDto;
+import com.example.demo.domain.member.dto.UpdateMemberDto;
 import com.example.demo.domain.member.entity.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -58,6 +59,18 @@ public class MemberDao {
 
         jdbcTemplate.update("insert member (email,password,name,phone,profile) values (?,?,?,?,?)",
                 signUpDto.getEmail(), signUpDto.getPassword(), signUpDto.getName(), signUpDto.getPhone(), signUpDto.getProfile());
+    }
+
+    // member update
+    public void update (UpdateMemberDto updateMemberDto){
+        jdbcTemplate.update("update member set password=?, name=?, phone=?, profile=? where email=?",
+                updateMemberDto.getPassword(), updateMemberDto.getName(), updateMemberDto.getPhone(), updateMemberDto.getProfile(), updateMemberDto.getEmail());
+    }
+
+    //member delete
+    public void delete (String email){
+        jdbcTemplate.update("delete from member where email=?",
+                email);
     }
 
 }

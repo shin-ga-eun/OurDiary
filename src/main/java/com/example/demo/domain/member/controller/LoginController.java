@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -22,7 +24,6 @@ public class LoginController {
 
     @PostMapping("/loginCheck")
     public String loginCheck(Model model, LoginDto loginDto) {
-
         Member member = loginService.login(loginDto);
 
         if(loginDto == null || member == null){
@@ -30,6 +31,7 @@ public class LoginController {
         }
         else if (loginDto.getEmail().equals(member.getEmail())) {
             if (loginDto.getPassword().equals(member.getPassword())) {
+                model.addAttribute("USERNAME", member.getName());
                 model.addAttribute("LOGIN_OK", "success");
             } else {
                 model.addAttribute("LOGIN_OK", "wrongPassword");

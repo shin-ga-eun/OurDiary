@@ -19,11 +19,6 @@ public class MainHomeController {
         return "mainhome";
     }
 
-    @GetMapping("/mypage")
-    public String mypage(Model model){
-        return "mypage";
-    }
-
     @GetMapping("/logout")
     public String logout(Model model) {
         return "logout";

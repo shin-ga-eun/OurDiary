@@ -14,15 +14,11 @@
     <%--        mainhome header--%>
     <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #f5c6cb; color:white;">
         <div class="container">
-            <a style="color: white; font-size: xx-large; " class="navbar-brand" href="/mainhome">Our Diary</a>
-
-            <div class="container-lg flex-md-row-reverse" id="navbarSupportedContent">
-
-<%--                <form class="mr-auto form-inline my-lg-0 mx-5">--%>
-<%--                    <input class="form-control mr-sm-2" type="search" placeholder="키워드를 입력해주세요..">--%>
-<%--                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>--%>
-<%--                </form>--%>
-
+            <div class="flex-md-column">
+                <a style="color: white; font-size: xx-large; " class="navbar-brand" href="/mainhome">Our Diary</a>
+                <p class="lead"><%=session.getAttribute("sessionUserName")%> 님, 오늘도 좋은하루 보내세요!</p>
+            </div>
+            <div class="flex-md-row-reverse" id="navbarSupportedContent">
                 <ul class="navbar-nav " style="align-items: end">
                     <li class="nav-item">
                         <a class="nav-link" href="/mainhome">메인홈 </a>

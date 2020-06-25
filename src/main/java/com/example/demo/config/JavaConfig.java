@@ -2,8 +2,7 @@ package com.example.demo.config;
 
 import com.example.demo.domain.diary.dao.DiaryDao;
 import com.example.demo.domain.member.dao.MemberDao;
-import com.example.demo.domain.member.service.LoginService;
-import com.example.demo.domain.member.service.SignUpService;
+import com.example.demo.domain.member.service.*;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -38,6 +37,15 @@ public class JavaConfig {
     public SignUpService signUpService(){
         return new SignUpService();
     }
+
+    @Bean
+    public GetMemberService getMemberService() { return new GetMemberService(); }
+
+    @Bean
+    public UpdateMemberService updateMemberService() { return new UpdateMemberService(); }
+
+    @Bean
+    public DeleteMemberService memberService() { return new DeleteMemberService(); }
 
     @Bean
     public DiaryDao diaryDao(){

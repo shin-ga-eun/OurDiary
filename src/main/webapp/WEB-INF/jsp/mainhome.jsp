@@ -20,7 +20,7 @@
         </div>
 
 <%--        mainhome body--%>
-        <div style="padding-top: 80px">
+        <div style="padding-top: 150px">
             <jsp:include page="body.jsp" flush="false"/>
         </div>
 

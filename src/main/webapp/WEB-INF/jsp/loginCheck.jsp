@@ -14,7 +14,12 @@
         if(LOGIN_OK.equals("success")) {
             String sessionID = session.getId();
             String email = (String) request.getParameter("email");
+            String password = (String) request.getParameter("password");
+            String name = (String) request.getAttribute("USERNAME");
             session.setAttribute("sessionEmail",email);
+            session.setAttribute("sessionPassword", password);
+            session.setAttribute("sessionUserName", name);
+
             out.println("<script>location.href='mainhome'</script>");
         }
         else if(LOGIN_OK.equals("wrongPassword")){
