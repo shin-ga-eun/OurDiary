@@ -10,28 +10,29 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script>
 
+    </script>
 </head>
 <body>
 
 
 <%--keyword search form and add a diary btn--%>
 <div class="flex-row">
+    <div class="flex-column">
+        <form action="/diary/list" method="post" class="form-inline flex-lg-row">
+            <input class="form-control" style="width: 300px; margin-right: 5px" type="search" placeholder="일기 키워드를 입력해주세요.." name="keyword">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색 페이지로 이동</button>
+        </form>
+    </div>
+
     <button type="button" class="btn btn-lg btn-block btn-outline-dark" onclick="location.href='diary'">일기 쓰기</button>
-
-
-    <form class="form-inline my-lg-3 flex-md-row-reverse">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-        <input class="form-control mr-sm-2" type="search" placeholder="키워드를 입력해주세요..">
-    </form>
-
+    <br/>
 </div>
 
 <%--calendar--%>
 <div>
     <jsp:include page="calendar.jsp" flush="false"/>
-
-
 </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -21,7 +21,6 @@ public class MainHomeController {
 
     @GetMapping("/mainhome")
     public String mainhome(@SessionAttribute("sessionEmail") String email, Model model) {
-
         List<GetDiaryDto> list = getDiaryService.getAllByWriter(email);
 
         if(list != null) {

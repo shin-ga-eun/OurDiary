@@ -53,55 +53,32 @@
 
         <%--            calendar navigation--%>
         <div id="container">
-            <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#F3F9D7" style="border:1px solid #CED99C; table-layout: fixed">
+            <table width="100%" border="0" cellspacing="1" cellpadding="1" id="KOO" bgcolor="#CECEF6" style="table-layout: fixed;">
                 <tr>
                     <td height="60">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td height="10">
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td align="center" >
+                            <tr><td height="10"></td></tr>
+                            <tr >
+                                <td align="center">
                                     <a href="<c:url value='/mainhome' />?year=<%=year-1%>&amp;month=<%=month%>" target="_self">
-                                        <b>&lt;&lt;</b><!-- 이전해 -->
+                                        <b>⏪</b>
                                     </a>
-
                                     <%if(month > 0 ){ %>
-
-                                    <a href="<c:url value='/mainhome' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
-                                        <b>&lt;</b><!-- 이전달 -->
+                                        <a href="<c:url value='/mainhome' />?year=<%=year%>&amp;month=<%=month-1%>" target="_self">
+                                        <b>◀️</b>
                                     </a>
-
                                     <%} else {%>
-
-                                    <b>&lt;</b>
-
                                     <%} %>
-
-                                    &nbsp;&nbsp;
-
-                                    <%=year%>년
-
-
-
-                                    <%=month+1%>월
-
-                                    &nbsp;&nbsp;
+                                    <%=year%>년 <%=month+1%>월
 
                                     <%if(month < 11 ){ %>
-
                                     <a href="<c:url value='/mainhome' />?year=<%=year%>&amp;month=<%=month+1%>" target="_self">
-                                        <!-- 다음달 --><b>&gt;</b>
+                                        <b>▶️</b>
                                     </a>
-
                                     <%}else{%>
-
-                                    <b>&gt;</b>
                                     <%} %>
                                     <a href="<c:url value='/mainhome' />?year=<%=year+1%>&amp;month=<%=month%>" target="_self">
-                                        <!-- 다음해 --><b>&gt;&gt;</b>
+                                        <b>⏩</b>
                                     </a>
                                 </td>
                             </tr>
@@ -110,8 +87,6 @@
                 </tr>
 
             </table>
-
-            <br>
             <%
                 List<GetDiaryDto> diaryList = (List<GetDiaryDto>) request.getAttribute("diaryList");
             %>

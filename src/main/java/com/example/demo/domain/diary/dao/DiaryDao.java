@@ -99,6 +99,28 @@ public class DiaryDao {
         return results.isEmpty() ? null : results;
     }
 
+    //select diary list by writer and keyword
+    public List<GetDiaryDto> selectAllByWriterAndKeyword (String writer, String keyword){
+
+        List<GetDiaryDto> results = jdbcTemplate.query("select id, date, title from diary where writer=? and title like ? or content like ? or weather like ?",
+                new RowMapper<GetDiaryDto>() {
+                    @Override
+                    public GetDiaryDto mapRow(ResultSet rs, int rowNum) throws SQLException {
+
+                        GetDiaryDto getDiaryDto = new GetDiaryDto();
+                        getDiaryDto.setId(rs.getLong("id"));
+                        getDiaryDto.setDate(rs.getDate("date").toString());
+                        getDiaryDto.setTitle(rs.getString("title"));
+                        return getDiaryDto;
+                    }
+                }, writer, "%"+keyword+"%", "%"+keyword+"%", "%"+keyword+"%");
+
+        if(results.isEmpty()){
+            return null;
+        }
+
+        return results;
+    }
 
     //select diary list by writer and section (year, month)
     public List<GetDiaryDto> selectAllByWriterAndSection (SearchDiaryDto searchDiaryDto) {
@@ -118,7 +140,6 @@ public class DiaryDao {
         if(results.isEmpty()){
             return null;
         }
-
         return results;
 
     }

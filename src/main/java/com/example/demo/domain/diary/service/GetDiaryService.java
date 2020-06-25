@@ -18,4 +18,6 @@ public class GetDiaryService {
         return diaryDao.selectAllByWriter(writer);
     }
 
+    public List<GetDiaryDto> getAllByWriterAndKeyword (String writer, String keyword){ return diaryDao.selectAllByWriterAndKeyword(writer, keyword); }
+
 }

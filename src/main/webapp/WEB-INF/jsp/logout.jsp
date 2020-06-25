@@ -16,7 +16,7 @@
 %>
     <script>
         alert('로그아웃되었습니다.. 다음에 또 이용해주세요!')
-        location.href='login'
+        location.href='/'
     </script>
 
 </body>

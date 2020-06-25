@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class MemberController {
     @Autowired
     private GetMemberService getMemberService;
     @Autowired

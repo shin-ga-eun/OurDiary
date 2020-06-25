@@ -50,7 +50,7 @@
         <div class="form-group row">
             <div class="col-sm-10">
                 <button type="submit" class="btn btn-primary">회원가입</button>
-                <button type="button" class="btn btn-secondary" onclick="location.href='login'">로그인화면으로</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/'">로그인화면으로</button>
             </div>
         </div>
     </form>
